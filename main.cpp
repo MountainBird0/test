@@ -36,7 +36,54 @@ void hanoi(int n, int from, int by, int to) // 출발지, 경유지, 목적지
 	}
 }
 
+// https://rpatm.tistory.com/40
+// 배열로 스택 구현
+char stack[5];
+int top = -1;
 
+int isFull() // 포화상태인지 검사
+{
+	if (top >= 4)
+	{
+		return 1;
+	}
+	return 0;
+}
+int isEmpty() // 공백상태인지 검사
+{
+	if (top == -1)
+	{
+		return 1;
+	}
+	return 0;
+}
+void push(char data)
+{
+	if (!isFull())
+	{
+		top++;
+		stack[top] = data;
+	}
+}
+char pop()
+{
+	if (!isEmpty())
+	{
+		char temp = stack[top];
+		top--;
+		return temp;
+	}
+}
+void print()
+{
+	if (!isEmpty())
+	{
+		for (int i =0; i <= top; i++)
+		{
+			std::cout << stack[i] << std:: endl;
+		}
+	}
+}
 
 int main()
 {
@@ -48,6 +95,14 @@ int main()
 	// 하노이
 	int numcount = 3;
 	hanoi(numcount, 1, 2, 3);
+
+	push('a');
+	push('b');
+	push('c');
+	print();
+	pop();
+	pop();
+	print();
 
 	return 0;
 }
